@@ -6,9 +6,10 @@ megasync \                # application launched at login
 firefox-developer \       # application launched at login
 rambox-bin \              # application launched at login
 spotify \                 # application launched at login
+yadm \                    # yet another dotfile manager
 zsh \                     # alternative shell
 gvim \                    # text editor
-rxvt-unicode \            # terminal emulator
+termite \                 # terminal emulator
 ttf-font-awesome \        # font used in i3 bar
 i3 \                      # tiling window manager
 i3blocks \                # replacement for i3bar

@@ -30,7 +30,7 @@ antigen bundle zsh-users/zsh-syntax-highlighting
 antigen bundle zsh-users/zsh-autosuggestions
 export NVM_LAZY_LOAD=true
 antigen bundle lukechilds/zsh-nvm
-lukechilds/zsh-better-npm-completion
+antigen bundle lukechilds/zsh-better-npm-completion
 antigen theme jnrowe
 antigen apply
 
