@@ -94,9 +94,6 @@ bindsym $mod+space focus mode_toggle
 # focus the parent container
 bindsym $mod+a focus parent
 
-# focus the child container
-#bindsym $mod+d focus child
-
 # resize window (you can also use the mouse for that)
 mode "resize" {
         # These bindings trigger as soon as you enter the resize mode
@@ -109,6 +106,7 @@ mode "resize" {
         bindsym Return mode "default"
         bindsym Escape mode "default"
 }
+bindsym $mod+r mode "resize"
 
 ##############
 # Workspaces #
@@ -146,11 +144,18 @@ exec rambox
 for_window [class="Spotify"] move to workspace $w10
 exec spotify
 
+# Move the current workspace to the other display (when only 2 outputs)
+bindsym $mod+Shift+t move workspace to output right
 
-bindsym $mod+r mode "resize"
 ###########
 # Visuals #
 ###########
+
+# Keybinding to detect and change monitor layout
+bindsym $mod+Shift+m exec ~/.config/i3/scripts/monitorsetup.sh
+
+# Keybinding to refresh wallpapers
+bindsym $mod+Shift+w exec ~/.config/i3/scripts/refreshwallpaper.sh
 
 # Font for window titles and bar, unless specified again in bar{} below.
 font pango:Ubuntu Mono 12
@@ -181,7 +186,6 @@ bar {
                 inactive_workspace $inactive-bg-color $inactive-bg-color $inactive-text-color
                 urgent_workspace   $urgent-bg-color   $urgent-bg-color   $text-color
         }
-        
         # i3blocks for status bar. See below conf file.
         status_command i3blocks -c ~/.config/i3/i3blocks.conf
 }
@@ -210,11 +214,9 @@ bindsym XF86AudioPrev exec playerctl previous
 # Programs that load on desktop restart with `exec_always` #
 ############################################################
 
-# Sets desktop background randomly
-exec_always feh --randomize --bg-fill ~/Pictures/Wallpapers/*
-
 # Sets multi-monitor positions. Scripts generated with the arandr graphical tool.
-# exec_always
+# Also sets random desktop backgrounds
+exec_always ~/.config/i3/scripts/monitorsetup.sh
 
 # Runs dunst, a minimalistic notification daemon
 exec_always --no-startup-id dunst -to 10 -align center

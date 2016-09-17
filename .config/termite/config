@@ -2,11 +2,10 @@
 allow_bold = false
 audible_bell = false
 clickable_url = true
-cursor_shape = underline
-font = Droid Sans Mono 11
+font = Droid Sans Mono 12
 scrollback_lines = 999999
 scroll_on_keystroke = true
 scroll_on_output = false
 
 [colors]
-background = rgba(50, 50, 50, 0.9)
+background = rgba(30, 30, 30, 0.95)
