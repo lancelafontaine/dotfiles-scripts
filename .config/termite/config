@@ -8,4 +8,4 @@ scroll_on_keystroke = true
 scroll_on_output = false
 
 [colors]
-background = rgba(30, 30, 30, 0.95)
+background = rgba(40, 42, 54, 1.00)
