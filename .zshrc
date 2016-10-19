@@ -36,3 +36,6 @@ antigen apply
 
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
+
+# required by neovim
+export PATH=/usr/bin/python:/usr/bin/python2:/usr/bin/python3:/usr/bin/xclip:$PATH

@@ -1,8 +1,3 @@
-."--------------------------"
-" Author: Lance Lafontaine "
-" Last Edit: 2015-01-13    "
-"--------------------------"
-
 "------------------"
 " GENERAL SETTINGS "
 "------------------"
@@ -53,6 +48,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe'
+Plug 'Valloric/MatchTagAlways'
 
 
 " Add plugins to &runtimepath
@@ -103,10 +99,6 @@ set showmatch
 
 " ALWAYS display status bar.
 set laststatus=2
-
-" Displays colorschemes in 256 color mode in vim.
-" Must ensure terminal also supports 256.
-"set t_Co=256
 
 " Sets the colorscheme.
 colorscheme dracula
@@ -160,7 +152,6 @@ let g:miniBufExplMapWindowNavVim = 1
 let g:miniBufExplMapWindowNavArrows = 1
 let g:miniBufExplMapCTabSwitchBufs = 1
 let g:miniBufExplModSelTarget = 1
-set runtimepath^=~/.vim/bundle/ag
 
 """ YouCompleteMe
 """ You should install this with ./install.py --clang-complete --system-libclang
