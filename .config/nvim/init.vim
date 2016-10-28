@@ -25,7 +25,8 @@ set encoding=utf-8
 set nofoldenable
 
 "Disables the creation of swapfiles.
-"set noswapfile
+set nobackup
+set noswapfile
 
 "Places swap file in /tmp
 set dir=/tmp
@@ -42,27 +43,23 @@ set undodir=/home/lancelafontaine/.vimundo/
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'dracula/vim'
-Plug 'mattn/emmet-vim', {'for': 'html' }
-Plug 'fholgado/minibufexpl.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
-Plug 'ntpeters/vim-better-whitespace'
 Plug 'hail2u/vim-css3-syntax', {'for': ['css', 'less', 'scss']}
 Plug 'skammer/vim-css-color', {'for': ['css', 'less', 'scss']}
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'pangloss/vim-javascript'
-Plug 'maksimr/vim-jsbeautify'
-Plug 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript', {'for': ['js']}
+"Plug 'maksimr/vim-jsbeautify'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe'
 Plug 'Valloric/MatchTagAlways'
+Plug 'mileszs/ack.vim'
+Plug 'alvan/vim-closetag'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -83,6 +80,11 @@ nmap OO O<Esc>j
 
 " Allows entering spaces in normal mode.
 nnoremap <space> i<space><esc>
+
+" list all buffers to change
+nnoremap <leader>b :ls<CR>:b<Space>
+
+nnoremap <leader>f :Ack<Space>
 
 "-------------------"
 " EDITS AND INDENTS "
@@ -116,7 +118,13 @@ set laststatus=2
 " Sets the colorscheme.
 colorscheme dracula
 
-
+" Highlight trailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 "--------"
 " SEARCH "
 "--------"
@@ -139,9 +147,6 @@ set gdefault
 " PLUGINS "
 "---------"
 
-"""FUGITIVE
-set statusline+=%{fugitive#statusline()}
-
 """NERDTree
 " Auto launches NERDTree on startup
 autocmd StdinReadPre * let s:std_in=1
@@ -160,15 +165,34 @@ let g:multi_cursor_prev_key='<C-l>'
 let g:multi_cursor_skip_key='<C-a>'
 let g:multi_cursor_quit_key='<Esc>'
 
-""" MiniBuffExpl
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
-
 """ YouCompleteMe
 """ You should install this with ./install.py --clang-complete --system-libclang
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 
+""" vim-airline
+let g:airline#extensions#bufferline#enabled=2
+let g:airline#extensions#tabline#enabled = 2
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#ycm#enabled = 1
+let g:airline#extensions#ycm#error_symbol = 'E:'
+
+""" vim-gitgutter
+let g:gitgutter_eager = 0
+let g:gitgutter_realtime = 0
+
+""" ctrlp
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_cmd = 'CtrlPMixed'
+
+""" delimitMate
+" Prevent from loading in HTML files, use vim-closetag instead.
+au FileType html let b:delimitMate_autoclose = 0
+let g:delimitMate_expand_cr = 1
+
+""" Ack.vim
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 
