@@ -1,8 +1,8 @@
 [options]
-allow_bold = false
+allow_bold = true
 audible_bell = false
 clickable_url = true
-font = Droid Sans Mono 12
+font = Input 13
 scrollback_lines = 999999
 scroll_on_keystroke = true
 scroll_on_output = false
