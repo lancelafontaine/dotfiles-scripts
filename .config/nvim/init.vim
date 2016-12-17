@@ -49,17 +49,15 @@ Plug 'dracula/vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
-Plug 'hail2u/vim-css3-syntax', {'for': ['css', 'less', 'scss']}
-Plug 'skammer/vim-css-color', {'for': ['css', 'less', 'scss']}
 Plug 'airblade/vim-gitgutter'
-Plug 'pangloss/vim-javascript', {'for': ['js']}
-"Plug 'maksimr/vim-jsbeautify'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe'
 Plug 'Valloric/MatchTagAlways'
 Plug 'mileszs/ack.vim'
 Plug 'alvan/vim-closetag'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'sheerun/vim-polyglot'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -82,7 +80,7 @@ nmap OO O<Esc>j
 nnoremap <space> i<space><esc>
 
 " list all buffers to change
-nnoremap <leader>b :ls<CR>:b<Space>
+nnoremap <leader>b :ls<CR>:bd<Space>
 
 nnoremap <leader>f :Ack<Space>
 
@@ -136,13 +134,6 @@ set smartcase
 " Applies search and replace to all occurences in a file.
 set gdefault
 
-"-----------------"
-" SYNTAX COLORING "
-"-----------------"
-
-"au BufNewFile,BufRead *.ejs set filetype=html
-
-
 "---------"
 " PLUGINS "
 "---------"
@@ -168,6 +159,9 @@ let g:multi_cursor_quit_key='<Esc>'
 """ YouCompleteMe
 """ You should install this with ./install.py --clang-complete --system-libclang
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_warning_symbol = '!!'
+let g:ycm_autoclose_preview_window_after_completion = 1
+
 
 """ vim-airline
 let g:airline#extensions#bufferline#enabled=2
