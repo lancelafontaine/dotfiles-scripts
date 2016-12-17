@@ -224,9 +224,6 @@ exec_always --no-startup-id dunst -to 10 -align center
 # Disables trackpad clicks for 0.5s after typing
 exec_always syndaemon -i 0.5 -t -d
 
-# Runs the network manager applet
-exec --no-startup-id nm-applet
-
 # Runs compton compositor, allows opacity.
 exec --no-startup-id compton -D 4 -i 0.9 -f
 
