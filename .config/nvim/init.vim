@@ -82,7 +82,7 @@ nnoremap <space> i<space><esc>
 " list all buffers to change
 nnoremap <leader>b :ls<CR>:bd<Space>
 
-nnoremap <leader>f :Ack<Space>
+nnoremap <leader>f :Ack "
 
 "-------------------"
 " EDITS AND INDENTS "
@@ -187,7 +187,7 @@ let g:delimitMate_expand_cr = 1
 
 """ Ack.vim
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+  let g:ackprg = 'ag --vimgrep --hidden --ignore-case --one-device'
 endif
 
 
