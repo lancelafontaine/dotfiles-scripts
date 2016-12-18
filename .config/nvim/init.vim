@@ -81,8 +81,15 @@ nnoremap <space> i<space><esc>
 
 " list all buffers to change
 nnoremap <leader>b :ls<CR>:bd<Space>
+" changes buffer previous/next
+nnoremap <leader>q :bp<CR>
+nnoremap <leader>w :bn<CR>
 
+" Uses ag for file/directory searching
 nnoremap <leader>f :Ack "
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep --hidden --ignore-case --one-device'
+endif
 
 "-------------------"
 " EDITS AND INDENTS "
@@ -185,9 +192,5 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 au FileType html let b:delimitMate_autoclose = 0
 let g:delimitMate_expand_cr = 1
 
-""" Ack.vim
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep --hidden --ignore-case --one-device'
-endif
 
 
