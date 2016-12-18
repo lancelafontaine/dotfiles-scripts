@@ -6,9 +6,9 @@ megasync \                # application launched at login
 firefox-developer \       # application launched at login
 rambox-bin \              # application launched at login
 spotify \                 # application launched at login
-yadm \                    # yet another dotfile manager
 zsh \                     # alternative shell
 gvim \                    # text editor
+neovim \                  # text editor
 termite \                 # terminal emulator
 ttf-font-awesome \        # font used in i3 bar
 i3 \                      # tiling window manager
@@ -20,8 +20,7 @@ arandr \                  # graphical tool for multi-monitors (xrandr)
 compton \                 # standalone compositor
 dunst \                   # minimal notification daemon
 lxappearance \            # graphical tool for GTK visuals tweak
-network-manager \         # network manager
-network-manager-applet \  # network manager applet
+network-manager \         # network manager, used in many scripts
 acpi \                    # used in battery-indicator.py script
 playerctl \               # used in spotify-currently-playing.py script
 xbacklight \              # used in backlight-indicator.py script
@@ -33,4 +32,4 @@ sudo curl -fLo /usr/local/bin/yadm https://github.com/TheLocehiliosan/yadm/raw/m
 sudo chmod a+x /usr/local/bin/yadm
 
 # clone dotfile repo, tries to merge with
-yadm clone https://github.com/lancelafontaine/dotfiles.git
+yadm clone https://github.com/lancelafontaine/dotfiles-scripts.git
