@@ -227,6 +227,9 @@ exec_always syndaemon -i 0.5 -t -d
 # Runs compton compositor, allows opacity.
 exec --no-startup-id compton -D 4 -i 0.9 -f
 
+# Sets keyboard layout
+exec setxkbmap -layout us
+
 # Starts MEGA at login
 exec megasync
 

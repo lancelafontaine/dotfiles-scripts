@@ -1,0 +1,9 @@
+! !------------------------------------------------------------------------------
+! ! ROFI Color theme
+! ! ------------------------------------------------------------------------------
+rofi.color-enabled: true
+rofi.color-window: argb:0010101, argb:0002b36, #232323
+rofi.color-normal: argb:da232323, argb:ddf0f0f0, argb:dd232323, argb:dd858484, argb:ddf0f0f0
+rofi.color-active: argb:dc232323, argb:dff0f0f0, argb:dc232323, argb:d7858484, argb:dcf0f0f0
+rofi.color-urgent: argb:da232323, argb:ddf0f0f0, argb:dd232323, argb:dd858484, argb:daf0f0f0
+
