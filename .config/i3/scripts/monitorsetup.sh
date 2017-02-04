@@ -24,5 +24,3 @@ else
     --output DP2 --off;
   refreshwallpaper
 fi
-
-
