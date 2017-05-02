@@ -6,7 +6,7 @@
 set termguicolors
 
 "Sets cursor to pipe in insert, block in normal
-:let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
+let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " Define paths to Python interpreters
 let g:python_host_prog = '/usr/bin/python2'
@@ -56,7 +56,6 @@ Plug 'Valloric/YouCompleteMe'
 Plug 'Valloric/MatchTagAlways'
 Plug 'mileszs/ack.vim'
 Plug 'alvan/vim-closetag'
-Plug 'nathanaelkane/vim-indent-guides'
 Plug 'sheerun/vim-polyglot'
 
 " Add plugins to &runtimepath
@@ -98,7 +97,7 @@ endif
 "Automatically does smart indentation.
 set autoindent
 
-" Convert tabs to spaces in insert and normal mode. Equivalence to 4 spaces.
+" Convert tabs to spaces in insert and normal mode.
 set expandtab
 set shiftwidth=2
 set softtabstop=2
@@ -169,7 +168,7 @@ let g:multi_cursor_quit_key='<Esc>'
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_warning_symbol = '!!'
 let g:ycm_autoclose_preview_window_after_completion = 1
-
+let g:ycm_rust_src_path = '/home/lancelafontaine/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 
 """ vim-airline
 let g:airline#extensions#bufferline#enabled=2
@@ -191,6 +190,5 @@ let g:ctrlp_cmd = 'CtrlPMixed'
 " Prevent from loading in HTML files, use vim-closetag instead.
 au FileType html let b:delimitMate_autoclose = 0
 let g:delimitMate_expand_cr = 1
-
 
 

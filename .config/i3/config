@@ -66,6 +66,7 @@ floating_modifier $mod
 ################
 
 # start a terminal
+# bindsym $mod+Return exec alacritty -e zsh
 bindsym $mod+Return exec termite
 
 # kill focused window
@@ -225,7 +226,7 @@ exec_always --no-startup-id dunst -to 10 -align center
 exec_always syndaemon -i 0.5 -t -d
 
 # Runs compton compositor, allows opacity.
-exec --no-startup-id compton -D 4 -i 0.9 -f
+exec --no-startup-id compton -D 4 -i 0.90 -f
 
 # Sets keyboard layout
 exec setxkbmap -layout us

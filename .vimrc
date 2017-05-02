@@ -11,10 +11,12 @@ set encoding=utf-8
 set nofoldenable
 
 "Disables the creation of swapfiles.
-"set noswapfile
+set nobackup
+set noswapfile
 
 "Places swap file in /tmp
-set dir=/tmp
+"set dir=/tmp
+"
 " Turns on syntax highlighting, and filetype, indentation and plugin detection.
 syntax on
 filetype on
@@ -24,32 +26,25 @@ filetype plugin on
 " Use an undo file for persistent undo's
 set undofile
 " set a directory to store the undo history
-set undodir=/home/lancelafontaine/.vimundo/
+set undodir=~/.vimundo/
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'kien/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'dracula/vim'
-Plug 'mattn/emmet-vim'
-Plug 'fholgado/minibufexpl.vim'
 Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'skammer/vim-css-color'
-Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'pangloss/vim-javascript'
-Plug 'maksimr/vim-jsbeautify'
-Plug 'mxw/vim-jsx'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'airblade/vim-rooter'
 Plug 'tpope/vim-surround'
 Plug 'Valloric/YouCompleteMe'
 Plug 'Valloric/MatchTagAlways'
-
+Plug 'mileszs/ack.vim'
+Plug 'alvan/vim-closetag'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'sheerun/vim-polyglot'
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -71,6 +66,18 @@ nmap OO O<Esc>j
 " Allows entering spaces in normal mode.
 nnoremap <space> i<space><esc>
 
+" list all buffers to change
+nnoremap <leader>b :ls<CR>:bd<Space>
+" changes buffer previous/next
+nnoremap <leader>q :bp<CR>
+nnoremap <leader>w :bn<CR>
+
+" Uses ag for file/directory searching
+nnoremap <leader>f :Ack "
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep --hidden --ignore-case --one-device'
+endif
+
 "-------------------"
 " EDITS AND INDENTS "
 "-------------------"
@@ -80,8 +87,8 @@ set autoindent
 
 " Convert tabs to spaces in insert and normal mode. Equivalence to 4 spaces.
 set expandtab
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 
 " No backspace restrictions in insert mode.
 set backspace=indent,eol,start
@@ -103,6 +110,13 @@ set laststatus=2
 " Sets the colorscheme.
 colorscheme dracula
 
+" Highlight trailing whitespace
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
 
 "--------"
 " SEARCH "
@@ -115,19 +129,9 @@ set smartcase
 " Applies search and replace to all occurences in a file.
 set gdefault
 
-"-----------------"
-" SYNTAX COLORING "
-"-----------------"
-
-"au BufNewFile,BufRead *.ejs set filetype=html
-
-
 "---------"
 " PLUGINS "
 "---------"
-
-"""FUGITIVE
-set statusline+=%{fugitive#statusline()}
 
 """NERDTree
 " Auto launches NERDTree on startup
@@ -147,14 +151,32 @@ let g:multi_cursor_prev_key='<C-l>'
 let g:multi_cursor_skip_key='<C-a>'
 let g:multi_cursor_quit_key='<Esc>'
 
-""" MiniBuffExpl
-let g:miniBufExplMapWindowNavVim = 1
-let g:miniBufExplMapWindowNavArrows = 1
-let g:miniBufExplMapCTabSwitchBufs = 1
-let g:miniBufExplModSelTarget = 1
-
 """ YouCompleteMe
-""" You should install this with ./install.py --clang-complete --system-libclang
+""" You should install this with:
+""" sudo ./install.py --clang-completer --system-libclang --tern-completer --racer-completer
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+let g:ycm_warning_symbol = '!!'
+let g:ycm_autoclose_preview_window_after_completion = 1
 
+
+""" vim-airline
+let g:airline#extensions#bufferline#enabled=2
+let g:airline#extensions#tabline#enabled = 2
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#ycm#enabled = 1
+let g:airline#extensions#ycm#error_symbol = 'E:'
+
+""" vim-gitgutter
+let g:gitgutter_eager = 0
+let g:gitgutter_realtime = 0
+
+""" ctrlp
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+let g:ctrlp_cmd = 'CtrlPMixed'
+
+""" delimitMate
+" Prevent from loading in HTML files, use vim-closetag instead.
+au FileType html let b:delimitMate_autoclose = 0
+let g:delimitMate_expand_cr = 1
 
