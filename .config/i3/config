@@ -67,7 +67,7 @@ floating_modifier $mod
 
 # start a terminal
 # bindsym $mod+Return exec alacritty -e zsh
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec termite -e zsh
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -139,11 +139,12 @@ bindsym $mod+Shift+0 move container to workspace $w10; workspace $w10
 
 # Loading applications in specific workspaces
 assign [class="Firefox"] $w1
-exec firefox-developer
+exec firefox-beta
 assign [class="Rambox"] $w9
 exec rambox
 for_window [class="Spotify"] move to workspace $w10
-exec spotify
+# exec spotify
+exec flatpak run com.spotify.Client
 
 # Move the current workspace to the other display (when only 2 outputs)
 bindsym $mod+Shift+t move workspace to output right

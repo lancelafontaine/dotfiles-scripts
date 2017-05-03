@@ -46,6 +46,3 @@ export PATH=/home/lancelafontaine/.gem/ruby/2.4.0/bin:$PATH
 # rust
 export RUSTUP_HOME=~/.multirust
 export RUST_SRC_PATH=~/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
-
-
-source /usr/share/chruby/chruby.sh
