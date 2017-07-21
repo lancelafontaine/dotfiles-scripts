@@ -43,6 +43,7 @@ set undodir=/home/lancelafontaine/.vimundo/
 
 call plug#begin('~/.config/nvim/plugged')
 
+Plug 'djoshea/vim-autoread'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'dracula/vim'
@@ -57,6 +58,11 @@ Plug 'Valloric/MatchTagAlways'
 Plug 'mileszs/ack.vim'
 Plug 'alvan/vim-closetag'
 Plug 'sheerun/vim-polyglot'
+Plug 'artnez/vim-wipeout'
+" Make sure relevant language linters are installed for ale: https://github.com/w0rp/ale#1-supported-languages-and-tools
+Plug 'rust-lang/rust.vim' " required by 'w0rp/ale'
+Plug 'w0rp/ale'
+
 
 " Add plugins to &runtimepath
 call plug#end()
@@ -84,10 +90,10 @@ nnoremap <leader>b :ls<CR>:bd<Space>
 nnoremap <leader>q :bp<CR>
 nnoremap <leader>w :bn<CR>
 
-" Uses ag for file/directory searching
+" Uses rg for file/directory searching
 nnoremap <leader>f :Ack "
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep --hidden --ignore-case --one-device'
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep --no-heading'
 endif
 
 "-------------------"
@@ -129,6 +135,7 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
 "--------"
 " SEARCH "
 "--------"
@@ -185,10 +192,20 @@ let g:gitgutter_realtime = 0
 """ ctrlp
 let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 let g:ctrlp_cmd = 'CtrlPMixed'
+let g:ctrlp_use_caching = 1
+let g:ctrlp_clear_cache_on_exit = 0
+let g:ctrlp_cache_dir = $HOME.'/.cache/ctrlp'
+
 
 """ delimitMate
 " Prevent from loading in HTML files, use vim-closetag instead.
 au FileType html let b:delimitMate_autoclose = 0
 let g:delimitMate_expand_cr = 1
 
+""" ctags
+" Go to arbitrary method definition
+nnoremap <leader>d :CtrlPTag<cr>
 
+""" ale
+let g:ale_sign_column_always = 1
+let g:airline#extensions#ale#enabled = 1
