@@ -59,6 +59,7 @@ Plug 'mileszs/ack.vim'
 Plug 'alvan/vim-closetag'
 Plug 'sheerun/vim-polyglot'
 Plug 'artnez/vim-wipeout'
+Plug 'racer-rust/vim-racer'
 " Make sure relevant language linters are installed for ale: https://github.com/w0rp/ale#1-supported-languages-and-tools
 Plug 'rust-lang/rust.vim' " required by 'w0rp/ale'
 Plug 'w0rp/ale'
@@ -208,4 +209,5 @@ nnoremap <leader>d :CtrlPTag<cr>
 
 """ ale
 let g:ale_sign_column_always = 1
+let g:ale_linters = {'rust': ['rls']}
 let g:airline#extensions#ale#enabled = 1
