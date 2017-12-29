@@ -1,0 +1,245 @@
+# This file can be regenerated to its default by running 
+# i3-config-wizard.
+
+#############
+# Variables #
+#############
+
+set $mod Mod4
+
+set $w1 "1 " set $w2 "2 " set $w3 "3 " set $w4 "4 " set 
+$w5 "5 " set $w6 "6 " set $w7 "7 " set $w8 "8 " set $w9 
+"9 " set $w10 "10 "
+
+set $bg-color #2f343f set $inactive-bg-color #2f343f set 
+$text-color #f3f4f5 set $inactive-text-color #676E7D set 
+$urgent-bg-color #E53935
+
+###########
+# General #
+###########
+
+# reload the configuration file
+bindsym $mod+Shift+c reload
+
+# restart i3 inplace (preserves your layout/session, can be 
+# used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You 
+pressed the exit shortcut. Do you really want to exit i3? 
+This will end your X session.' -b 'Yes, exit i3' 'i3-msg 
+exit'"
+
+# Lock screen. Loads specific image.
+bindsym $mod+shift+x exec i3lock -i 
+~/Pictures/Wallpapers/gVvgZij.png
+
+# rofi is an application launcher replacement for dmenu. 
+# Theme is in ~/.Xresources.
+bindsym $mod+d exec rofi -show run -lines 6 -eh 2 -width 100 
+-padding 400 -opacity "85" -font "Droid Sans Mono 18" 
+-separator-style none -hide-scrollbar -monitor -1
+
+##############
+# Navigation #
+##############
+
+# change focus
+bindsym $mod+h focus left bindsym $mod+j focus down bindsym 
+$mod+k focus up bindsym $mod+l focus right
+
+# move focused window
+bindsym $mod+Shift+h move left bindsym $mod+Shift+j move down 
+bindsym $mod+Shift+k move up bindsym $mod+Shift+l move right
+
+# Use Mouse+$mod to drag floating windows to their wanted 
+# position
+floating_modifier $mod
+
+################
+# Window Layout#
+################
+
+# start a terminal bindsym $mod+Return exec alacritty -e zsh
+bindsym $mod+Return exec termite -e zsh
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# split in horizontal orientation
+bindsym $mod+g split h
+
+# split in vertical orientation
+bindsym $mod+v split v
+
+# enter fullscreen mode for the focused container
+bindsym $mod+f fullscreen toggle
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking bindsym $mod+w layout tabbed 
+bindsym $mod+e layout toggle split
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# focus the parent container
+bindsym $mod+a focus parent
+
+# resize window (you can also use the mouse for that)
+mode "resize" {
+        # These bindings trigger as soon as you enter the 
+        # resize mode
+        bindsym h resize shrink width 10 px or 10 ppt
+        bindsym j resize grow height 10 px or 10 ppt
+        bindsym k resize shrink height 10 px or 10 ppt
+        bindsym l resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+##############
+# Workspaces #
+##############
+
+# Switch to workspace
+bindsym $mod+1 workspace $w1 bindsym $mod+2 workspace $w2 
+bindsym $mod+3 workspace $w3 bindsym $mod+4 workspace $w4 
+bindsym $mod+5 workspace $w5 bindsym $mod+6 workspace $w6 
+bindsym $mod+7 workspace $w7 bindsym $mod+8 workspace $w8 
+bindsym $mod+9 workspace $w9 bindsym $mod+0 workspace $w10
+
+# Move focused window to workspace
+bindsym $mod+Shift+1 move container to workspace $w1; 
+workspace $w1 bindsym $mod+Shift+2 move container to 
+workspace $w2; workspace $w2 bindsym $mod+Shift+3 move 
+container to workspace $w3; workspace $w3 bindsym 
+$mod+Shift+4 move container to workspace $w4; workspace $w4 
+bindsym $mod+Shift+5 move container to workspace $w5; 
+workspace $w5 bindsym $mod+Shift+6 move container to 
+workspace $w6; workspace $w6 bindsym $mod+Shift+7 move 
+container to workspace $w7; workspace $w7 bindsym 
+$mod+Shift+8 move container to workspace $w8; workspace $w8 
+bindsym $mod+Shift+9 move container to workspace $w9; 
+workspace $w9 bindsym $mod+Shift+0 move container to 
+workspace $w10; workspace $w10
+
+# Loading applications in specific workspaces
+assign [class="Firefox"] $w1 exec firefox-beta assign 
+[class="Rambox"] $w9 exec rambox for_window [class="Spotify"] 
+move to workspace $w10
+# exec spotify
+exec flatpak run com.spotify.Client
+
+# Move the current workspace to the other display (when only 
+# 2 outputs)
+bindsym $mod+Shift+t move workspace to output right
+
+###########
+# Visuals #
+###########
+
+# Keybinding to detect and change monitor layout
+bindsym $mod+Shift+m exec 
+~/.config/i3/scripts/monitorsetup.sh
+
+# Keybinding to refresh wallpapers
+bindsym $mod+Shift+w exec 
+~/.config/i3/scripts/refreshwallpaper.sh
+
+# Font for window titles and bar, unless specified again in 
+# bar{} below.
+font pango:Droid Sans Mono 12
+
+# Hides borders along edges of screen
+hide_edge_borders both
+
+# don't show top bar for tiled windows.
+new_window none new_float normal
+
+# window colors event # border # background # text #indicator
+client.focused $bg-color $bg-color $text-color #00ff00 
+client.unfocused $inactive-bg-color $inactive-bg-color 
+$inactive-text-color #00ff00 client.focused_inactive 
+$inactive-bg-color $inactive-bg-color $inactive-text-color 
+#00ff00 client.urgent $urgent-bg-color $urgent-bg-color 
+$text-color #00ff00
+
+bar {
+        # Specific to status bar.
+        font pango:Droid Sans Mono, Icons 12
+        position top
+        colors {
+                background $bg-color
+                separator #757575
+                # event # border # background # text
+                focused_workspace $bg-color $bg-color 
+$text-color
+                inactive_workspace $inactive-bg-color 
+$inactive-bg-color $inactive-text-color
+                urgent_workspace $urgent-bg-color 
+$urgent-bg-color $text-color
+        }
+        # i3blocks for status bar. See below conf file.
+        status_command i3blocks -c ~/.config/i3/i3blocks.conf
+}
+
+# necessary for i3-gaps
+for_window [class="^.*"] border pixel 0 gaps inner all set 20 
+gaps outer all set 5
+
+##########################
+# Additional Keybindings #
+##########################
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl 
+set-sink-volume 0 +5% bindsym XF86AudioLowerVolume exec 
+--no-startup-id pactl set-sink-volume 0 -5% bindsym 
+XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 
+toggle
+
+# Screen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 10 bindsym 
+XF86MonBrightnessDown exec xbacklight -dec 10
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play bindsym 
+XF86AudioPause exec playerctl pause bindsym XF86AudioNext 
+exec playerctl next bindsym XF86AudioPrev exec playerctl 
+previous
+
+############################################################
+# Programs that load on login start with `exec` # Programs 
+# that load on desktop restart with `exec_always` #
+############################################################
+
+# Sets multi-monitor positions. Scripts generated with the 
+# arandr graphical tool. Also sets random desktop backgrounds
+exec_always ~/.config/i3/scripts/monitorsetup.sh
+
+# Runs dunst, a minimalistic notification daemon
+exec_always --no-startup-id dunst -to 10 -align center
+
+# Disables trackpad clicks for 0.5s after typing
+exec_always syndaemon -i 0.5 -t -d
+
+# Runs compton compositor, allows opacity.
+exec --no-startup-id compton -D 4 -i 0.95 -e 0.95 -m 0.95 -o 
+0.95 -f -c
+
+# Sets keyboard layout
+exec setxkbmap -layout us
+
+# Starts MEGA at login
+exec megasync
+
+# Starts redshift at login
+exec redshift

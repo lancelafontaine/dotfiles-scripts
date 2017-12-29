@@ -41,7 +41,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+shift+x exec i3lock -i ~/Pictures/Wallpapers/gVvgZij.png
 
 # rofi is an application launcher replacement for dmenu. Theme is in ~/.Xresources.
-bindsym $mod+d exec rofi -show run -lines 6 -eh 2 -width 100 -padding 400 -opacity "85" -font "Droid Sans Mono 18" -separator-style none -hide-scrollbar -monitor -1
+bindsym $mod+d exec rofi -show run -lines 6 -eh 2 -width 100 -padding 400 -opacity "85" -font "Source Code Pro 18" -separator-style none -hide-scrollbar -monitor -1
 
 ##############
 # Navigation #
@@ -161,7 +161,7 @@ bindsym $mod+Shift+m exec ~/.config/i3/scripts/monitorsetup.sh
 bindsym $mod+Shift+w exec ~/.config/i3/scripts/refreshwallpaper.sh
 
 # Font for window titles and bar, unless specified again in bar{} below.
-font pango:Droid Sans Mono 12
+font pango:Source Code Pro 13
 
 # Hides borders along edges of screen
 hide_edge_borders both
@@ -179,7 +179,7 @@ client.urgent           $urgent_bg_color    $urgent_bg_color   $text_color      
 
 bar {
         # Specific to status bar.
-        font pango:Droid Sans Mono, Icons 12
+        font pango:Source Code Pro, Icons 13
         position top
         colors {
                 background $bg_color

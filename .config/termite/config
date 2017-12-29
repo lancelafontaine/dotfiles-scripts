@@ -2,7 +2,7 @@
 allow_bold = true
 audible_bell = false
 clickable_url = true
-font = Input 13
+font = Source Code Pro 13
 scrollback_lines = 999999
 scroll_on_keystroke = true
 scroll_on_output = false

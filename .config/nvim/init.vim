@@ -172,7 +172,7 @@ let g:multi_cursor_quit_key='<Esc>'
 
 """ YouCompleteMe
 """ You should install this with:
-""" sudo ./install.py --clang-completer --system-libclang --tern-completer --racer-completer
+""" sudo ./install.py --clang-completer --system-libclang --gocode-completer --tern-completer --racer-completer
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_warning_symbol = '!!'
 let g:ycm_autoclose_preview_window_after_completion = 1
