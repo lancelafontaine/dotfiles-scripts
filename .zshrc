@@ -6,6 +6,9 @@ SAVEHIST=1000
 # added by zsh compistall
 zstyle :compinstall filename '/home/lancelafontaine/.zshrc'
 
+# rustup completions
+fpath+=~/.zfunc
+
 # load completions
 autoload -Uz compinit
 compinit
@@ -46,8 +49,15 @@ export PATH=/home/lancelafontaine/.gem/ruby/2.4.0/bin:$PATH
 # rust
 export RUSTUP_HOME=~/.multirust
 export PATH=/home/lancelafontaine/.cargo/bin:$PATH
-export RUST_SRC_PATH=~/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+export SYSROOT="$(rustc --print sysroot)"
 
 # transfer.sh
 transfer() { if [ $# -eq 0 ]; then echo -e "No arguments specified. Usage:\necho transfer /tmp/test.md\ncat /tmp/test.md | transfer test.md"; return 1; fi
 tmpfile=$( mktemp -t transferXXX ); if tty -s; then basefile=$(basename "$1" | sed -e 's/[^a-zA-Z0-9._-]/-/g'); curl --progress-bar --upload-file "$1" "https://transfer.sh/$basefile" >> $tmpfile; else curl --progress-bar --upload-file "-" "https://transfer.sh/$1" >> $tmpfile ; fi; cat $tmpfile; rm -f $tmpfile; }
+
+# picture in picture
+alias yy="mpv --really-quiet --autofit=35% --geometry=-10-15 --ytdl --ytdl-format='mp4[height<=?720]' -ytdl-raw-options=playlist-start=1"
+
+eval `ssh-agent` > /dev/null
+

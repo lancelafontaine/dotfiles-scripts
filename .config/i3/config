@@ -139,11 +139,13 @@ bindsym $mod+Shift+9 move container to workspace $w9; workspace $w9
 bindsym $mod+Shift+0 move container to workspace $w10; workspace $w10
 
 # Loading applications in specific workspaces
-assign [class="Firefox"] $w1
-exec firefox-beta
+assign [class="Firefox Developer Edition"] $w1
+exec firefox-developer-edition
 assign [class="Rambox"] $w9
 exec rambox
 for_window [class="Spotify"] move to workspace $w10
+for_window [class="(?i)mpv"] floating enable
+for_window [class="(?i)mpv"] sticky enable
 # exec spotify
 exec flatpak run com.spotify.Client
 

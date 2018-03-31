@@ -106,8 +106,8 @@ set autoindent
 
 " Convert tabs to spaces in insert and normal mode.
 set expandtab
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=4
+set softtabstop=4
 
 " No backspace restrictions in insert mode.
 set backspace=indent,eol,start
@@ -172,11 +172,11 @@ let g:multi_cursor_quit_key='<Esc>'
 
 """ YouCompleteMe
 """ You should install this with:
-""" sudo ./install.py --clang-completer --system-libclang --gocode-completer --tern-completer --racer-completer
+""" ./install.py --clang-completer --system-libclang --tern-completer --racer-completer
 let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
 let g:ycm_warning_symbol = '!!'
 let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_rust_src_path = '/home/lancelafontaine/.multirust/toolchains/nightly-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+let g:ycm_rust_src_path =  system('echo "$(rustc --print sysroot)"/lib/rustlib/src/rust/src')
 
 """ vim-airline
 let g:airline#extensions#bufferline#enabled=2
