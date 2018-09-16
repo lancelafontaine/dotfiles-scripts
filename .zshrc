@@ -10,6 +10,8 @@ zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
 
+autoload colors && colors
+
 # Vim emulation for navigation
 bindkey -v
 
@@ -21,15 +23,39 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 
+#########
+# ZPLUG #
+#########
+
+# Install zplug unless it is already installed
+if ! $(ls -a ~ | grep -q '.zplug'); then
+  echo "Installing zplug..."
+  curl -sL --proto-redir -all,https https://raw.githubusercontent.com/zplug/installer/master/installer.zsh | zsh
+fi
+source ~/.zplug/init.zsh
+
+
+# List plugins
+zplug 'zsh-users/zsh-autosuggestions'
+zplug 'hlissner/zsh-autopair'
+zplug 'zsh-users/zsh-syntax-highlighting'
+zplug 'themes/jnrowe', from:oh-my-zsh, as:theme
+
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+zplug load
+
 # Antigen zsh plugin manager
-source ~/.antigen/antigen.zsh
+#source ~/.antigen/antigen.zsh
 
 # Use the oh-my-zsh repo as a default for plugins
-antigen use oh-my-zsh
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen theme jnrowe
-antigen apply
+#antigen theme jnrowe
+#antigen apply
 
 export VISUAL=/usr/bin/nvim
 export EDITOR="$VISUAL"
@@ -48,3 +74,4 @@ export SYSROOT="$(rustc --print sysroot)"
 
 # picture in picture
 alias yy="mpv --really-quiet --autofit=35% --geometry=-10-15 --ytdl --ytdl-format='mp4[height<=?720]' -ytdl-raw-options=playlist-start=1"
+
