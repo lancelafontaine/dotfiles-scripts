@@ -10,8 +10,6 @@ zstyle :compinstall filename '~/.zshrc'
 autoload -Uz compinit
 compinit
 
-autoload colors && colors
-
 # Vim emulation for navigation
 bindkey -v
 
@@ -22,6 +20,7 @@ bindkey '^?' backward-delete-char
 bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
+bindkey '^f' autosuggest-accept
 
 #########
 # ZPLUG #
@@ -34,11 +33,21 @@ if ! $(ls -a ~ | grep -q '.zplug'); then
 fi
 source ~/.zplug/init.zsh
 
-
 # List plugins
-zplug 'zsh-users/zsh-autosuggestions'
-zplug 'hlissner/zsh-autopair'
+zplug 'plugins/git', from:oh-my-zsh
+zplug 'plugins/vi-mode', from:oh-my-zsh
+zplug 'plugins/bundler', from:oh-my-zsh
+zplug 'plugins/gem', from:oh-my-zsh
+zplug 'plugins/dircycle', from:oh-my-zsh
+zplug 'plugins/docker', from:oh-my-zsh
+zplug 'plugins/brew', from:oh-my-zsh
+zplug 'plugins/per-directory-history', from:oh-my-zsh
+zplug 'plugins/fasd', from:oh-my-zsh
 zplug 'zsh-users/zsh-syntax-highlighting'
+zplug 'zsh-users/zsh-completions'
+zplug 'zsh-users/zsh-autosuggestions'
+zplug "zsh-users/zsh-history-substring-search"
+zplug 'hlissner/zsh-autopair'
 zplug 'themes/jnrowe', from:oh-my-zsh, as:theme
 
 # Install plugins if there are plugins that have not been installed
@@ -49,13 +58,6 @@ if ! zplug check --verbose; then
     fi
 fi
 zplug load
-
-# Antigen zsh plugin manager
-#source ~/.antigen/antigen.zsh
-
-# Use the oh-my-zsh repo as a default for plugins
-#antigen theme jnrowe
-#antigen apply
 
 export VISUAL=/usr/bin/nvim
 export EDITOR="$VISUAL"
@@ -69,8 +71,6 @@ export PATH=~/.gem/ruby/2.4.0/bin:$PATH
 # rust
 export RUSTUP_HOME=~/.multirust
 export PATH=~/.cargo/bin:$PATH
-export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
-export SYSROOT="$(rustc --print sysroot)"
 
 # picture in picture
 alias yy="mpv --really-quiet --autofit=35% --geometry=-10-15 --ytdl --ytdl-format='mp4[height<=?720]' -ytdl-raw-options=playlist-start=1"
