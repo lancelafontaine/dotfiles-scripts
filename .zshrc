@@ -72,6 +72,19 @@ export PATH=~/.gem/ruby/2.4.0/bin:$PATH
 export RUSTUP_HOME=~/.multirust
 export PATH=~/.cargo/bin:$PATH
 
+# required by dircolors for LSCOLORS to work
+if [ "$(uname 2> /dev/null)" = "Darwin" ]; then
+  export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+  if whence dircolors >/dev/null; then
+    eval "$(dircolors -b)"
+    zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+    alias ls='ls --color'
+  else
+    export CLICOLOR=1
+    zstyle ':completion:*:default' list-colors ''
+  fi
+fi
+
 # picture in picture
 alias yy="mpv --really-quiet --autofit=35% --geometry=-10-15 --ytdl --ytdl-format='mp4[height<=?720]' -ytdl-raw-options=playlist-start=1"
 
