@@ -1,3 +1,8 @@
+"-----------"
+" VARIABLES "
+"-----------"
+let s:uname = system("uname")
+
 "-----------------"
 " NEOVIM-SPECIFIC "
 "-----------------"
@@ -9,8 +14,13 @@ set termguicolors
 let $NVIM_TUI_ENABLE_CURSOR_SHAPE=1
 
 " Define paths to Python interpreters
-let g:python_host_prog = '/usr/bin/python2'
-let g:python3_host_prog = '/usr/bin/python3'
+if s:uname == "Darwin\n"
+  let g:python_host_prog = '/usr/local/bin/python2'
+  let g:python3_host_prog = '/usr/local/bin/python3'
+else
+  let g:python_host_prog = '/usr/bin/python2'
+  let g:python3_host_prog = '/usr/bin/python3'
+endif
 
 "------------------"
 " GENERAL SETTINGS "
@@ -39,7 +49,7 @@ filetype plugin on
 " Use an undo file for persistent undo's
 set undofile
 " set a directory to store the undo history
-set undodir=/home/lancelafontaine/.vimundo/
+set undodir=~/.vimundo/
 
 call plug#begin('~/.config/nvim/plugged')
 
